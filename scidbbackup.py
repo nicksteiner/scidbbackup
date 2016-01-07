@@ -285,12 +285,12 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    HOST = 'http://{host}:{port}'.format(**args)
-    BACKUP_PATH = args.backup
+    HOST = 'http://{}:{}'.format(args.host, args.port)
+    BACKUP_PATH = args.path
 
     if args.initialize:
         reset_sql()
     if args.restore:
-        restore(args.arrays, args.version)
+        restore(args.arrays, HOST)
     if args.backup:
-        backup(args.arrays)
+        backup(args.arrays, HOST)
